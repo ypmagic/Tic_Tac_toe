@@ -15,6 +15,7 @@ public class Interface {
     private JLabel status;
     // the buttons for grid
     private JButton[] buttons;
+    private JButton restart;
     private ArrayList<Integer> usedNums;
     // player's choice O or X... O = true, X = false
     private String playerChoice;
@@ -55,6 +56,15 @@ public class Interface {
 
         this.status = new JLabel("Welcome to Tic Tac Toe! Choose O or X", SwingConstants.CENTER);
 
+        this.restart = new JButton("Restart");
+        this.restart.setVisible(false);
+        this.restart.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                Interface a = new Interface();
+            }
+        });
         JButton easy = new JButton("Easy");
         easy.setVisible(false);
         JButton hard = new JButton("Hard");
@@ -66,8 +76,8 @@ public class Interface {
                 c = new EasyComputer(computerChoice, buttons);
                 easy.setVisible(false);
                 hard.setVisible(false);
-                for (int j = 0; j < buttons.length; j++) {
-                    buttons[j].setEnabled(true);
+                for (JButton j : buttons) {
+                    j.setEnabled(true);
                 }
             }
         });
@@ -77,8 +87,8 @@ public class Interface {
                 c = new HardComputer(computerChoice, buttons);
                 easy.setVisible(false);
                 hard.setVisible(false);
-                for (int j = 0; j < buttons.length; j++) {
-                    buttons[j].setEnabled(true);
+                for (JButton j : buttons) {
+                    j.setEnabled(true);
                 }
             }
         });
@@ -117,6 +127,7 @@ public class Interface {
         temp.add(x);
         temp.add(easy);
         temp.add(hard);
+        temp.add(this.restart);
 
         this.north = new JPanel(new BorderLayout());
         this.north.setBorder(BorderFactory.createLineBorder(Color.black, 1));
@@ -134,40 +145,126 @@ public class Interface {
 
     private void checkWin() {
         // player win check
-        if (this.buttons[0].getText().equals(this.buttons[3].getText().equals(this.buttons[6].getText().equals(playerChoice)))) {
+        if (this.buttons[0].getText().equals(playerChoice) && this.buttons[3].getText().equals(playerChoice) &&
+                this.buttons[6].getText().equals(playerChoice)) {
             status.setText("PLAYER WINS!");
-        } else if (this.buttons[1].getText().equals(this.buttons[4].getText().equals(this.buttons[7].getText().equals(playerChoice)))) {
+            for (JButton j : this.buttons) {
+                j.setEnabled(false);
+            }
+            this.restart.setVisible(true);
+        } else if (this.buttons[1].getText().equals(playerChoice) && this.buttons[4].getText().equals(playerChoice) &&
+                this.buttons[7].getText().equals(playerChoice)) {
             status.setText("PLAYER WINS!");
-        } else if (this.buttons[2].getText().equals(this.buttons[5].getText().equals(this.buttons[8].getText().equals(playerChoice)))) {
+            for (JButton j : this.buttons) {
+                j.setEnabled(false);
+            }
+            this.restart.setVisible(true);
+        } else if (this.buttons[2].getText().equals(playerChoice) && this.buttons[5].getText().equals(playerChoice) &&
+                this.buttons[8].getText().equals(playerChoice)) {
             status.setText("PLAYER WINS!");
-        } else if (this.buttons[0].getText().equals(this.buttons[1].getText().equals(this.buttons[2].getText().equals(playerChoice)))) {
+            for (JButton j : this.buttons) {
+                j.setEnabled(false);
+            }
+            this.restart.setVisible(true);
+        } else if (this.buttons[0].getText().equals(playerChoice) && this.buttons[1].getText().equals(playerChoice) &&
+                this.buttons[2].getText().equals(playerChoice)) {
             status.setText("PLAYER WINS!");
-        } else if (this.buttons[3].getText().equals(this.buttons[4].getText().equals(this.buttons[5].getText().equals(playerChoice)))) {
+            for (JButton j : this.buttons) {
+                j.setEnabled(false);
+            }
+            this.restart.setVisible(true);
+        } else if (this.buttons[3].getText().equals(playerChoice) && this.buttons[4].getText().equals(playerChoice) &&
+                this.buttons[5].getText().equals(playerChoice)) {
             status.setText("PLAYER WINS!");
-        } else if (this.buttons[6].getText().equals(this.buttons[7].getText().equals(this.buttons[8].getText().equals(playerChoice)))) {
+            for (JButton j : this.buttons) {
+                j.setEnabled(false);
+            }
+            this.restart.setVisible(true);
+        } else if (this.buttons[6].getText().equals(playerChoice) && this.buttons[7].getText().equals(playerChoice) &&
+                this.buttons[8].getText().equals(playerChoice)) {
             status.setText("PLAYER WINS!");
-        } else if (this.buttons[2].getText().equals(this.buttons[4].getText().equals(this.buttons[6].getText().equals(playerChoice)))) {
+            for (JButton j : this.buttons) {
+                j.setEnabled(false);
+            }
+            this.restart.setVisible(true);
+        } else if (this.buttons[2].getText().equals(playerChoice) && this.buttons[4].getText().equals(playerChoice) &&
+                this.buttons[6].getText().equals(playerChoice)) {
             status.setText("PLAYER WINS!");
-        } else if (this.buttons[0].getText().equals(this.buttons[4].getText().equals(this.buttons[8].getText().equals(playerChoice)))) {
-            status.setText("PLAYER WINS!"); // computer win check
-        } else if (this.buttons[0].getText().equals(this.buttons[3].getText().equals(this.buttons[6].getText().equals(computerChoice)))) {
+            for (JButton j : this.buttons) {
+                j.setEnabled(false);
+            }
+            this.restart.setVisible(true);
+        } else if (this.buttons[0].getText().equals(playerChoice) && this.buttons[4].getText().equals(playerChoice) &&
+                this.buttons[8].getText().equals(playerChoice)) {
+            status.setText("PLAYER WINS!");
+            for (JButton j : this.buttons) {
+                j.setEnabled(false);
+            }
+            this.restart.setVisible(true);
+        }
+        // computer win check
+        else if (this.buttons[0].getText().equals(computerChoice) && this.buttons[3].getText().equals(computerChoice) &&
+                this.buttons[6].getText().equals(computerChoice)) {
             status.setText("COMPUTER WINS!");
-        } else if (this.buttons[1].getText().equals(this.buttons[4].getText().equals(this.buttons[7].getText().equals(computerChoice)))) {
+            for (JButton j : this.buttons) {
+                j.setEnabled(false);
+            }
+            this.restart.setVisible(true);
+        } else if (this.buttons[1].getText().equals(computerChoice) && this.buttons[4].getText().equals(computerChoice) &&
+                this.buttons[7].getText().equals(computerChoice)) {
             status.setText("COMPUTER WINS!");
-        } else if (this.buttons[2].getText().equals(this.buttons[5].getText().equals(this.buttons[8].getText().equals(computerChoice)))) {
+            for (JButton j : this.buttons) {
+                j.setEnabled(false);
+            }
+            this.restart.setVisible(true);
+        } else if (this.buttons[2].getText().equals(computerChoice) && this.buttons[5].getText().equals(computerChoice) &&
+                this.buttons[8].getText().equals(computerChoice)) {
             status.setText("COMPUTER WINS!");
-        } else if (this.buttons[0].getText().equals(this.buttons[1].getText().equals(this.buttons[2].getText().equals(computerChoice)))) {
+            for (JButton j : this.buttons) {
+                j.setEnabled(false);
+            }
+            this.restart.setVisible(true);
+        } else if (this.buttons[0].getText().equals(computerChoice) && this.buttons[1].getText().equals(computerChoice) &&
+                this.buttons[2].getText().equals(computerChoice)) {
             status.setText("COMPUTER WINS!");
-        } else if (this.buttons[3].getText().equals(this.buttons[4].getText().equals(this.buttons[5].getText().equals(computerChoice)))) {
+            for (JButton j : this.buttons) {
+                j.setEnabled(false);
+            }
+            this.restart.setVisible(true);
+        } else if (this.buttons[3].getText().equals(computerChoice) && this.buttons[4].getText().equals(computerChoice) &&
+                this.buttons[5].getText().equals(computerChoice)) {
             status.setText("COMPUTER WINS!");
-        } else if (this.buttons[6].getText().equals(this.buttons[7].getText().equals(this.buttons[8].getText().equals(computerChoice)))) {
+            for (JButton j : this.buttons) {
+                j.setEnabled(false);
+            }
+            this.restart.setVisible(true);
+        } else if (this.buttons[6].getText().equals(computerChoice) && this.buttons[7].getText().equals(computerChoice) &&
+                this.buttons[8].getText().equals(computerChoice)) {
             status.setText("COMPUTER WINS!");
-        } else if (this.buttons[2].getText().equals(this.buttons[4].getText().equals(this.buttons[6].getText().equals(computerChoice)))) {
+            for (JButton j : this.buttons) {
+                j.setEnabled(false);
+            }
+            this.restart.setVisible(true);
+        } else if (this.buttons[2].getText().equals(computerChoice) && this.buttons[4].getText().equals(computerChoice) &&
+                this.buttons[6].getText().equals(computerChoice)) {
             status.setText("COMPUTER WINS!");
-        } else if (this.buttons[0].getText().equals(this.buttons[4].getText().equals(this.buttons[8].getText().equals(computerChoice)))) {
+            for (JButton j : this.buttons) {
+                j.setEnabled(false);
+            }
+            this.restart.setVisible(true);
+        } else if (this.buttons[0].getText().equals(computerChoice) && this.buttons[4].getText().equals(computerChoice) &&
+                this.buttons[8].getText().equals(computerChoice)) {
             status.setText("COMPUTER WINS!");
+            for (JButton j : this.buttons) {
+                j.setEnabled(false);
+            }
+            this.restart.setVisible(true);
         } else if (this.usedNums.size() == 9){
             status.setText("NO ONE WINS!");
+            for (JButton j : this.buttons) {
+                j.setEnabled(false);
+            }
+            this.restart.setVisible(true);
         }
     }
 
