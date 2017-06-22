@@ -60,19 +60,23 @@ public class Interface {
 
         JButton easy = new JButton("Easy");
         easy.setVisible(false);
-        easy.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                c = new EasyComputer();
-            }
-        });
         JButton hard = new JButton("Hard");
         hard.setVisible(false);
         hard.setEnabled(false);
+        easy.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                c = new EasyComputer(computerChoice, buttons);
+                easy.setVisible(false);
+                hard.setVisible(false);
+            }
+        });
         hard.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                c = new HardComputer();
+                c = new HardComputer(computerChoice, buttons);
+                easy.setVisible(false);
+                hard.setVisible(false);
             }
         });
 
@@ -108,6 +112,8 @@ public class Interface {
         JPanel temp = new JPanel();
         temp.add(o);
         temp.add(x);
+        temp.add(easy);
+        temp.add(hard);
 
         this.north = new JPanel(new BorderLayout());
         this.north.setBorder(BorderFactory.createLineBorder(Color.black, 1));
@@ -135,6 +141,30 @@ public class Interface {
             status.setText("PLAYER WINS!");
         } else if (this.buttons[3].getText().equals(this.buttons[4].getText().equals(this.buttons[5].getText().equals(playerChoice)))) {
             status.setText("PLAYER WINS!");
+        } else if (this.buttons[6].getText().equals(this.buttons[7].getText().equals(this.buttons[8].getText().equals(playerChoice)))) {
+            status.setText("PLAYER WINS!");
+        } else if (this.buttons[2].getText().equals(this.buttons[4].getText().equals(this.buttons[6].getText().equals(playerChoice)))) {
+            status.setText("PLAYER WINS!");
+        } else if (this.buttons[0].getText().equals(this.buttons[4].getText().equals(this.buttons[8].getText().equals(playerChoice)))) {
+            status.setText("PLAYER WINS!"); // computer win check
+        } else if (this.buttons[0].getText().equals(this.buttons[3].getText().equals(this.buttons[6].getText().equals(computerChoice)))) {
+            status.setText("COMPUTER WINS!");
+        } else if (this.buttons[1].getText().equals(this.buttons[4].getText().equals(this.buttons[7].getText().equals(computerChoice)))) {
+            status.setText("COMPUTER WINS!");
+        } else if (this.buttons[2].getText().equals(this.buttons[5].getText().equals(this.buttons[8].getText().equals(computerChoice)))) {
+            status.setText("COMPUTER WINS!");
+        } else if (this.buttons[0].getText().equals(this.buttons[1].getText().equals(this.buttons[2].getText().equals(computerChoice)))) {
+            status.setText("COMPUTER WINS!");
+        } else if (this.buttons[3].getText().equals(this.buttons[4].getText().equals(this.buttons[5].getText().equals(computerChoice)))) {
+            status.setText("COMPUTER WINS!");
+        } else if (this.buttons[6].getText().equals(this.buttons[7].getText().equals(this.buttons[8].getText().equals(computerChoice)))) {
+            status.setText("COMPUTER WINS!");
+        } else if (this.buttons[2].getText().equals(this.buttons[4].getText().equals(this.buttons[6].getText().equals(computerChoice)))) {
+            status.setText("COMPUTER WINS!");
+        } else if (this.buttons[0].getText().equals(this.buttons[4].getText().equals(this.buttons[8].getText().equals(computerChoice)))) {
+            status.setText("COMPUTER WINS!");
+        } else {
+            status.setText("NO ONE WINS!");
         }
     }
 
@@ -144,5 +174,9 @@ public class Interface {
 
     public JButton[] getButtons() {
         return this.buttons;
+    }
+
+    public JFrame getFrame() {
+        return this.frame;
     }
 }

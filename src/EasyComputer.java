@@ -9,9 +9,9 @@ public class EasyComputer extends Computer {
     private String computerChoice;
     private JButton[] buttons;
 
-    public EasyComputer() {
-        this.computerChoice = this.getComputerChoice();
-        this.buttons = this.getButtons();
+    public EasyComputer(String computerChoice, JButton[] buttons) {
+        this.computerChoice = computerChoice;
+        this.buttons = buttons;
     }
 
     public void makeMove() {
