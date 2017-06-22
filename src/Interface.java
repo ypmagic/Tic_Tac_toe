@@ -31,24 +31,21 @@ public class Interface {
         for (int i = 0; i < this.buttons.length; i++) {
             this.buttons[i] = new JButton("");
             this.buttons[i].setPreferredSize(new Dimension(100, 100));
+            this.buttons[i].setEnabled(false);
             final int temp = i;
             this.buttons[i].addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (usedNums.size() == 9) {
-                        checkWin();
-                    }
+                    checkWin();
                     // check before player move
-                    if (buttons[temp].getText().equals("") || buttons[temp].getText().equals(computerChoice)) {
+                    if (!buttons[temp].getText().equals("") || buttons[temp].getText().equals(computerChoice)) {
                         status.setText("You selected an already selected button!");
                     } else {
                         buttons[temp].setText(playerChoice);
                         usedNums.add(temp);
                     }
                     // check after player move
-                    if (usedNums.size() == 9) {
-                        checkWin();
-                    }
+                    checkWin();
                     c.makeMove();
 
                 }
@@ -69,6 +66,9 @@ public class Interface {
                 c = new EasyComputer(computerChoice, buttons);
                 easy.setVisible(false);
                 hard.setVisible(false);
+                for (int j = 0; j < buttons.length; j++) {
+                    buttons[j].setEnabled(true);
+                }
             }
         });
         hard.addActionListener(new ActionListener() {
@@ -77,6 +77,9 @@ public class Interface {
                 c = new HardComputer(computerChoice, buttons);
                 easy.setVisible(false);
                 hard.setVisible(false);
+                for (int j = 0; j < buttons.length; j++) {
+                    buttons[j].setEnabled(true);
+                }
             }
         });
 
@@ -163,7 +166,7 @@ public class Interface {
             status.setText("COMPUTER WINS!");
         } else if (this.buttons[0].getText().equals(this.buttons[4].getText().equals(this.buttons[8].getText().equals(computerChoice)))) {
             status.setText("COMPUTER WINS!");
-        } else {
+        } else if (this.usedNums.size() == 9){
             status.setText("NO ONE WINS!");
         }
     }
